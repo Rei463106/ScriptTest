@@ -31,10 +31,7 @@ public class DepthFirstSearch : MonoBehaviour
         route.Push(start);//スタート地点を入れる
         visitedNodes[start] = true;//スタート地点は訪問済みにする
         DFS(route, adj, visitedNodes, vertexQuantity, goal, routeList);//探索開始
-    }
 
-    private void Update()
-    {
         foreach (var r in routeList)
         {
             Debug.Log(r);
