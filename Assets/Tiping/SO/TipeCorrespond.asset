@@ -23,3 +23,33 @@ MonoBehaviour:
     _kana: "\u3048"
   - _alphabet: o
     _kana: "\u304A"
+  - _alphabet: ka
+    _kana: "\u304B"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ku
+    _kana: "\u304F"
+  - _alphabet: ke
+    _kana: "\u3051"
+  - _alphabet: ko
+    _kana: "\u3053"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"

@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class ComfirmationConnect : MonoBehaviour
 {
     private ComfirationRuntime _comfirmationR;
-    private char _currentChar;//Œ»İ‚Ì•¶š‚ğ“ü‚ê‚é
+    private char _currentChar;//ç¾åœ¨ã®æ–‡å­—ã‚’å…¥ã‚Œã‚‹
 
     private void OnEnable()
     {
@@ -16,31 +16,38 @@ public class ComfirmationConnect : MonoBehaviour
         EventBus.Unsubscribe(this);
     }
 
+    private void Update()
+    {
+        Debug.Log(_currentChar);
+    }
+
     public int ReturnCount()
     {
         return _comfirmationR.ReturnQueueCount();
     }
 
     /// <summary>
-    /// ‚±‚ê‚à‰Šú‰»‚Ì’†‚É“ü‚ê‚é
+    /// ã“ã‚Œã‚‚åˆæœŸåŒ–ã®ä¸­ã«å…¥ã‚Œã‚‹
     /// </summary>
     /// <param name="tipeName"></param>
     private void InstatiateRuntime(InitializeEvent e)
     {
         _comfirmationR = new ComfirationRuntime(e._tipeName);
-        _currentChar = _comfirmationR.InitializeComfirmation();//ˆê•¶š–Ú‚ğ“ü‚ê‚é
+        _currentChar = _comfirmationR.DequeueComfirmation();//ä¸€æ–‡å­—ç›®ã‚’å…¥ã‚Œã‚‹
     }
 
     /// <summary>
-    /// “ü—Í‚³‚ê‚½•¶š‚ª‡‚Á‚Ä‚¢‚é‚©ŠÔˆá‚Á‚Ä‚¢‚é‚©‚ÅÀs
-    /// Input‚Ì•û‚ÅŒÄ‚Ño‚µ
+    /// å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—ãŒåˆã£ã¦ã„ã‚‹ã‹é–“é•ã£ã¦ã„ã‚‹ã‹ã§å®Ÿè¡Œ
+    /// Inputã®æ–¹ã§å‘¼ã³å‡ºã—
     /// </summary>
     /// <param name="input"></param>
     private void Confirmation(ConfirmationEvent c)
     {
         if (c._inputChar == _currentChar)
         {
+            Debug.Log("æ­£è§£ã§ã™");
             EventBus.Publish(new CorrectEvent(c._inputChar));
+            _currentChar = _comfirmationR.DequeueComfirmation();
         }
         else
         {

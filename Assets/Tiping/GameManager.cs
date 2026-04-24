@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         while (_initializeC.ReturnCount() > 0)//箱が尽きるまで…
         {
-            await UniTask.WaitUntil(() => _comfirmationC.ReturnCount() <= 0);
+            await UniTask.WaitUntil(() => _comfirmationC.ReturnCount() < 0);
             //初期化実行
             _initializeC.GoInitializeExecute();
         }

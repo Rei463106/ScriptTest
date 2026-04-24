@@ -1,11 +1,15 @@
 ﻿
+using Unity.VisualScripting;
+
 public class ComfirationRuntime
 {
     private ComfirmationProcess _comfirmationP;
+    private int _count;
 
     public ComfirationRuntime(TipeName tipeName)
     {
         _comfirmationP = new ComfirmationProcess(tipeName.Name);
+        _count = _comfirmationP.Queue.Count;
     }
 
     /// <summary>
@@ -14,16 +18,25 @@ public class ComfirationRuntime
     /// <returns></returns>
     public int ReturnQueueCount()
     {
-        return _comfirmationP.Queue.Count;
+       return _count;
     }
 
     /// <summary>
-    /// 初期化の際一文字目を返す
+    /// 現在の文字を返す
     /// </summary>
     /// <param name="ch"></param>
     /// <returns></returns>
-    public char InitializeComfirmation()
+    public char DequeueComfirmation()
     {
-        return _comfirmationP.Queue.Dequeue();
+        if (_comfirmationP.Queue.Count > 0)
+        {
+            _count--;
+            return _comfirmationP.Queue.Dequeue();
+        }
+        else
+        {
+            _count--;
+            return '\0';
+        }
     }
 }

@@ -1,25 +1,27 @@
+ï»¿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InputUI : MonoBehaviour
 {
-    [Header("‘Î‰•\")]
+    [Header("å¯¾å¿œè¡¨")]
     [SerializeField] private TipeCorrespond _tipeCorrespond;
-    [Header("‚Ğ‚ç‚ª‚È")]
+    [Header("ã²ã‚‰ãŒãª")]
     [SerializeField] private Text _kanaText;
-    [Header("ƒ[ƒ}š")]
+    [Header("ãƒ­ãƒ¼ãƒå­—")]
     [SerializeField] private Text _romaText;
     private Dictionary<string, string> _correspondWord = new Dictionary<string, string>();
     private int _kanaCount = 0;
-    private string _roma;//Œ»İ‘Å‚Á‚½‚Æ‚±‚ë‚Ü‚Å“ü‚Á‚Ä‚¢‚é
+    private string _roma;//ç¾åœ¨æ‰“ã£ãŸã¨ã“ã‚ã¾ã§å…¥ã£ã¦ã„ã‚‹
 
     private void OnEnable()
     {
         foreach (var i in _tipeCorrespond.CorrespondList)
         {
-            _correspondWord.Add(i.Alphabet, i.Kana);
-        }//ƒ[ƒ}š‚É‘Î‰‚·‚é‚Ğ‚ç‚ª‚È
+            _correspondWord.TryAdd(i.Alphabet, i.Kana);
+        }//ãƒ­ãƒ¼ãƒå­—ã«å¯¾å¿œã™ã‚‹ã²ã‚‰ãŒãª
 
         EventBus.Subscribe<InitializeEvent>(this, InitializeUI);
         EventBus.Subscribe<CorrectEvent>(this, CorrectText);
@@ -32,32 +34,42 @@ public class InputUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ³‰ğ
+    /// æ­£è§£æ™‚
     /// </summary>
     private void CorrectText(CorrectEvent c)
     {
-        _roma += c._correctChar;//‚Ğ‚ç‚ª‚È—p‚É•¶š‚ğ’Ç‰Á
+        _roma += c._correctChar;//ã²ã‚‰ãŒãªç”¨ã«æ–‡å­—ã‚’è¿½åŠ 
         _romaText.text += c._correctChar;
         if (_correspondWord.TryGetValue(_roma, out var w))
         {
-            //“ü—ÍÏ‚İ‚¾‚¯F‚ª•Ï‚í‚éH
+            //å…¥åŠ›æ¸ˆã¿ã ã‘è‰²ãŒå¤‰ã‚ã‚‹ï¼Ÿ
             string colored = $"<color=yellow>{_kanaText.text.Substring(0, _kanaCount)}</color>" + _kanaText.text.Substring(_kanaCount);
             _kanaCount++;
             _roma = "";
-        }//«‘‚É‘Î‰‚·‚é‚Ğ‚ç‚ª‚È‚ª‚ ‚Á‚½‚ç•ÏX
+        }//è¾æ›¸ã«å¯¾å¿œã™ã‚‹ã²ã‚‰ãŒãªãŒã‚ã£ãŸã‚‰å¤‰æ›´
     }
 
     /// <summary>
-    /// •s³‰ğ
+    /// ä¸æ­£è§£æ™‚
     /// </summary>
     private void InCorrectText(InCorrectEvent i)
     {
+        InCorrectTask().Forget();
+    }
+
+    private async UniTask InCorrectTask()
+    {
         _romaText.color = Color.red;
         _kanaText.color = Color.red;
+        //å…¥åŠ›ã§ããªãã™ã‚‹
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        //å…¥åŠ›ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
+        _romaText.color = Color.white;
+        _kanaText.color = Color.white;
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void InitializeUI(InitializeEvent i)
     {

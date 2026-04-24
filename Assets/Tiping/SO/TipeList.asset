@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa01a89f1ed49c94dab580e926b85067, type: 3}
   m_Name: TipeList
   m_EditorClassIdentifier: Assembly-CSharp::TipeList
-  _tipeList: []
+  _tipeList:
+  - _name: aiueo
+    _kanaName: "\u3042\u3044\u3046\u3048\u304A"
+  - _name: nananana
+    _kanaName: "\u306A\u306A\u306A\u306A"
