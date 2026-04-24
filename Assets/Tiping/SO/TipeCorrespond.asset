@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2216fd55885484ea101f9a6f7980fc, type: 3}
+  m_Name: TipeCorrespond
+  m_EditorClassIdentifier: Assembly-CSharp::TipeCorrespond
+  _correspondList:
+  - _alphabet: a
+    _kana: "\u3042"
+  - _alphabet: i
+    _kana: "\u3044"
+  - _alphabet: u
+    _kana: "\u3046"
+  - _alphabet: e
+    _kana: "\u3048"
+  - _alphabet: o
+    _kana: "\u304A"
