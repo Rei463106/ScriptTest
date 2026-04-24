@@ -40,7 +40,7 @@ public class ComfirmationConnect : MonoBehaviour
     {
         if (c._inputChar == _currentChar)
         {
-            EventBus.Publish(new CorrectEvent());
+            EventBus.Publish(new CorrectEvent(c._inputChar));
         }
         else
         {

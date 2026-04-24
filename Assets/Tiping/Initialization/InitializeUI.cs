@@ -17,7 +17,7 @@ public class InitializeUI : MonoBehaviour
     {
         EventBus.Unsubscribe(this);//ここのイベント全てを解除
     }
-    
+
     /// <summary>
     /// 初期化で文字の色変え
     /// </summary>
@@ -25,7 +25,7 @@ public class InitializeUI : MonoBehaviour
     private void ChangeColor(InitializeEvent e)
     {
         _kanaText.text = e._tipeName.KanaName;
-        _romaText.text = e._tipeName.Name;
+        _romaText.text = "";//ローマ字のは空にする
         _kanaText.color = Color.white;
         _romaText.color = Color.white;
     }
