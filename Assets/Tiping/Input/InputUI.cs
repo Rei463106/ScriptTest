@@ -61,9 +61,11 @@ public class InputUI : MonoBehaviour
     {
         _romaText.color = Color.red;
         _kanaText.color = Color.red;
+        InputChange._state = InputState.Inputing;
         //入力できなくする
-        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        await UniTask.Delay(TimeSpan.FromSeconds(5f));
         //入力できるようにする
+        InputChange._state = InputState.None;
         _romaText.color = Color.white;
         _kanaText.color = Color.white;
     }

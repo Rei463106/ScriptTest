@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -19,8 +20,11 @@ public class GameManager : MonoBehaviour
         while (_initializeC.ReturnCount() > 0)//箱が尽きるまで…
         {
             await UniTask.WaitUntil(() => _comfirmationC.ReturnCount() < 0);
+            InputChange._state = InputState.Inputing;
+            await UniTask.Delay(TimeSpan.FromSeconds(2f));
             //初期化実行
             _initializeC.GoInitializeExecute();
+            InputChange._state = InputState.None;
         }
         //ゲーム終了
     }

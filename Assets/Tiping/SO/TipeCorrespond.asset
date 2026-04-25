@@ -33,16 +33,16 @@ MonoBehaviour:
     _kana: "\u3051"
   - _alphabet: ko
     _kana: "\u3053"
-  - _alphabet: ki
-    _kana: "\u304D"
-  - _alphabet: ki
-    _kana: "\u304D"
-  - _alphabet: ki
-    _kana: "\u304D"
-  - _alphabet: ki
-    _kana: "\u304D"
-  - _alphabet: ki
-    _kana: "\u304D"
+  - _alphabet: sa
+    _kana: "\u3055"
+  - _alphabet: si
+    _kana: "\u3057"
+  - _alphabet: su
+    _kana: "\u3059"
+  - _alphabet: se
+    _kana: "\u305B"
+  - _alphabet: so
+    _kana: "\u305D"
   - _alphabet: ki
     _kana: "\u304D"
   - _alphabet: ki
