@@ -35,7 +35,7 @@ MonoBehaviour:
     _kana: "\u3053"
   - _alphabet: sa
     _kana: "\u3055"
-  - _alphabet: si
+  - _alphabet: shi
     _kana: "\u3057"
   - _alphabet: su
     _kana: "\u3059"
@@ -43,6 +43,58 @@ MonoBehaviour:
     _kana: "\u305B"
   - _alphabet: so
     _kana: "\u305D"
+  - _alphabet: ta
+    _kana: "\u305F"
+  - _alphabet: chi
+    _kana: "\u3061"
+  - _alphabet: tsu
+    _kana: "\u3064"
+  - _alphabet: te
+    _kana: "\u3066"
+  - _alphabet: to
+    _kana: "\u3068"
+  - _alphabet: na
+    _kana: "\u306A"
+  - _alphabet: ni
+    _kana: "\u306B"
+  - _alphabet: nu
+    _kana: "\u306C"
+  - _alphabet: ne
+    _kana: "\u306D"
+  - _alphabet: no
+    _kana: "\u306E"
+  - _alphabet: ha
+    _kana: "\u306F"
+  - _alphabet: hi
+    _kana: "\u3072"
+  - _alphabet: fu
+    _kana: "\u3075"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
+  - _alphabet: ki
+    _kana: "\u304D"
   - _alphabet: ki
     _kana: "\u304D"
   - _alphabet: ki

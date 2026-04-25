@@ -8,6 +8,9 @@ public enum InputState
     Inputing
 }
 
+/// <summary>
+/// 全体で管理する用
+/// </summary>
 public static class InputChange
 {
     public static InputState _state;

@@ -1,6 +1,4 @@
 ﻿
-using Unity.VisualScripting;
-
 public class ComfirationRuntime
 {
     private ComfirmationProcess _comfirmationP;
@@ -13,7 +11,7 @@ public class ComfirationRuntime
     }
 
     /// <summary>
-    /// 現在の文字数を返す
+    /// 次に進めるかどうか
     /// </summary>
     /// <returns></returns>
     public int ReturnQueueCount()
