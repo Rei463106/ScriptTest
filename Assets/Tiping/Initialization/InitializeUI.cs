@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InitializeUI : MonoBehaviour
 {
     [Header("ひらがなテキスト")]
-    [SerializeField] private Text _kanaText;
+    [SerializeField] private TextMeshProUGUI _kanaText;
     [Header("ローマ字テキスト")]
-    [SerializeField] private Text _romaText;
+    [SerializeField] private TextMeshProUGUI _romaText;
 
     private void OnEnable()
     {

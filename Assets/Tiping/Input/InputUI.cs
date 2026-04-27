@@ -2,16 +2,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class InputUI : MonoBehaviour
 {
     [Header("対応表")]
     [SerializeField] private TipeCorrespond _tipeCorrespond;
     [Header("ひらがな")]
-    [SerializeField] private Text _kanaText;
+    [SerializeField] private TextMeshProUGUI _kanaText;
     [Header("ローマ字")]
-    [SerializeField] private Text _romaText;
+    [SerializeField] private TextMeshProUGUI _romaText;
     private Dictionary<string, string> _correspondWord = new Dictionary<string, string>();
     private int _kanaCount = 0;
     private string _roma = "";
@@ -63,14 +63,12 @@ public class InputUI : MonoBehaviour
     private async UniTask InCorrectTask()
     {
         _romaText.color = Color.red;
-        _kanaText.color = Color.red;
         InputChange._state = InputState.Inputing;
         //入力できなくする
-        await UniTask.Delay(TimeSpan.FromSeconds(5f));
+        await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
         //入力できるようにする
         InputChange._state = InputState.None;
         _romaText.color = Color.white;
-        _kanaText.color = Color.white;
     }
 
     /// <summary>
