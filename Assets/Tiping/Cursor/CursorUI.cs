@@ -15,6 +15,8 @@ public class CursorUI : MonoBehaviour
     [SerializeField] private RectTransform _cursorTransform;
     [Header("カーソル動くText")]
     [SerializeField] private TextMeshProUGUI _romaText;
+    [Header("初期位置")]
+    [SerializeField] private Vector2 _cursorInitializeOffset;
 
     private int i = 0;
 
@@ -36,22 +38,8 @@ public class CursorUI : MonoBehaviour
 
     private void Update()
     {
-        var textInfo = _romaText.textInfo;
-
-        if (textInfo.characterCount == 0)
-        {
-            _cursorTransform.anchoredPosition = Vector2.zero;
-            return;
-        }
-
-        int lastIndex = textInfo.characterCount - 1;
-
-        if (lastIndex < 0 || lastIndex >= textInfo.characterInfo.Length)
-            return;
-
-        var charInfo = textInfo.characterInfo[lastIndex];
+        MoveCursor();   
     }
-
 
     private async UniTask BlinkCursor()
     {
@@ -70,7 +58,7 @@ public class CursorUI : MonoBehaviour
     /// <param name="i"></param>
     private void InitializeCursor(InitializeEvent i)
     {
-        //CursorMove();
+        //MoveCursor();
     }
 
     /// <summary>
@@ -79,23 +67,20 @@ public class CursorUI : MonoBehaviour
     /// <param name="c"></param>
     private void CorrectCursor(CorrectEvent c)
     {
-        //CursorMove();
+        //MoveCursor();
     }
 
-    private void CursorMove()
+    private void MoveCursor()
     {
-        _romaText.ForceMeshUpdate();
-
-        var textInfo = _romaText.textInfo;
-
-        if (textInfo.characterCount == 0)
+        if (_romaText.text.Length == 0)
+            _cursorTransform.anchoredPosition = _cursorInitializeOffset;
+        else
         {
-            _cursorTransform.anchoredPosition = Vector2.zero;
-            return;
-        }
-
-        var charInfo = textInfo.characterInfo[textInfo.characterCount - 1];
-
-        _cursorTransform.anchoredPosition = charInfo.topRight;
+            var currentString = _romaText.textInfo.characterInfo;
+            var lastString = currentString[_romaText.text.Length - 1].bottomRight;
+            var x = lastString.x;
+            var y = lastString.y;
+            _cursorTransform.anchoredPosition = new Vector2(x, y);
+        }     
     }
 }
