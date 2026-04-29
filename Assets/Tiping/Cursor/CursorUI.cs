@@ -20,17 +20,6 @@ public class CursorUI : MonoBehaviour
 
     private int i = 0;
 
-    private void OnEnable()
-    {
-        EventBus.Subscribe<InitializeEvent>(this, InitializeCursor);
-        EventBus.Subscribe<CorrectEvent>(this, CorrectCursor);
-    }
-
-    private void OnDisable()
-    {
-        EventBus.Unsubscribe(this);
-    }
-
     private void Start()
     {
         BlinkCursor().Forget();
@@ -50,24 +39,6 @@ public class CursorUI : MonoBehaviour
             _cursor.enabled = false;
             await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
         }
-    }
-
-    /// <summary>
-    /// 初期化
-    /// </summary>
-    /// <param name="i"></param>
-    private void InitializeCursor(InitializeEvent i)
-    {
-        //MoveCursor();
-    }
-
-    /// <summary>
-    /// 正解時にカーソルを動かす
-    /// </summary>
-    /// <param name="c"></param>
-    private void CorrectCursor(CorrectEvent c)
-    {
-        //MoveCursor();
     }
 
     private void MoveCursor()
