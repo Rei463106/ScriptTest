@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bf46eadecd1074cbed2da6036fb583, type: 3}
+  m_Name: NodeList
+  m_EditorClassIdentifier: Assembly-CSharp::Node
+  _difficultyInformation:
+  - _myDifficulty: 1
+    _nodeSetting:
+      _rightDifficulty: 2
+      _leftDifficulty: 0
+      _tipeList: {fileID: 11400000, guid: f5e8d1fe8a1be3a47919cf72b6ce78a7, type: 2}
+  - _myDifficulty: 2
+    _nodeSetting:
+      _rightDifficulty: 3
+      _leftDifficulty: 1
+      _tipeList: {fileID: 11400000, guid: 90600b051405fe74093ca5035a219f1c, type: 2}
+  - _myDifficulty: 3
+    _nodeSetting:
+      _rightDifficulty: 0
+      _leftDifficulty: 2
+      _tipeList: {fileID: 11400000, guid: 602a323891d77ec439eaea5ca066ba28, type: 2}

@@ -10,8 +10,7 @@ public class TimerUI : MonoBehaviour
     [Header("制限時間")]
     [SerializeField] private float _limitTime;
     private float _currentTime;
-    private Vector3 _rotate;
-
+  
     private void Start()
     {
         _currentTime = _limitTime;
