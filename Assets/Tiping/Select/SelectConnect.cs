@@ -1,14 +1,22 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class SelectConnect : MonoBehaviour
 {
-    [Header("NodeÇÃÉäÉXÉg")]
+    [Header("Node„ÅÆ„É™„Çπ„Éà")]
     [SerializeField] private Node _nodeList;
+    [SerializeField] private SceneMoveManager _moveManager;
     private SelectRuntime _selectRuntime;
 
     private void OnEnable()
     {
         _selectRuntime = new SelectRuntime(_nodeList);
+    }
+
+    private void Update()
+    {
+        Debug.Log(SelectTipeList._tipeList);
+        if (Input.GetKeyDown(KeyCode.Z))
+            DicisionButton();
     }
 
     public void RightButton()
@@ -21,8 +29,9 @@ public class SelectConnect : MonoBehaviour
         _selectRuntime.LeftButton();
     }
 
-    public void DecisionButton()
+    public void DicisionButton()
     {
         _selectRuntime.DecisionButton();
+        _moveManager.SceneMove("TipingGame");
     }
 }

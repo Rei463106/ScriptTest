@@ -50,6 +50,6 @@ public class SelectRuntime
     public void DecisionButton()
     {
         var d = _selectDictionary[_currentDifficulty].TipeList;
-        SelectTipeList._tipeList = d;//このリストを初期化の時に渡す(渡せるのか？渡し方は考える)
+        SelectTipeList._tipeList = d;//このリストを初期化の時に渡す
     }
 }

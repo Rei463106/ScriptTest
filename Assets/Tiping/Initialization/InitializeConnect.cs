@@ -2,14 +2,12 @@
 
 public class InitializeConnect : MonoBehaviour
 {
-    [Header("TipeList")]
-    [SerializeField] private TipeList _tipeList;
-
     private InitializeRuntime _initializeR;
 
     private void OnEnable()
     {
-        _initializeR = new InitializeRuntime(_tipeList);
+        var list = SelectTipeList._tipeList;
+        _initializeR = new InitializeRuntime(list);
     }
 
     /// <summary>
