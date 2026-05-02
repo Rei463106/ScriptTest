@@ -19,3 +19,5 @@ MonoBehaviour:
     _kanaName: "\u306A\u306A\u306A\u306A"
   - _name: bariumu
     _kanaName: "\u30D0\u30EA\u30A6\u30E0"
+  - _name: rakkyou
+    _kanaName: "\u3089\u3063\u304D\u3087\u3046"

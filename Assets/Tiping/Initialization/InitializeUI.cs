@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
 
 public class InitializeUI : MonoBehaviour
 {
@@ -8,6 +7,8 @@ public class InitializeUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _kanaText;
     [Header("ローマ字テキスト")]
     [SerializeField] private TextMeshProUGUI _romaText;
+    [Header("答えローマ字テキスト")]
+    [SerializeField] private TextMeshProUGUI _answerRomaText;
 
     private void OnEnable()
     {
@@ -26,8 +27,10 @@ public class InitializeUI : MonoBehaviour
     private void ChangeColor(InitializeEvent e)
     {
         _kanaText.text = e._tipeName.KanaName;
+        _answerRomaText.text = e._tipeName.Name;
         _romaText.text = "";//ローマ字のは空にする
         _kanaText.color = Color.white;
         _romaText.color = Color.white;
+        _answerRomaText.color = Color.white;
     }
 }

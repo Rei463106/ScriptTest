@@ -14,210 +14,348 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TipeCorrespond
   _correspondList:
   - _alphabet: a
-    _kana: "\u3042"
+    _alphabetNumber: 1
   - _alphabet: i
-    _kana: "\u3044"
+    _alphabetNumber: 1
   - _alphabet: u
-    _kana: "\u3046"
+    _alphabetNumber: 1
   - _alphabet: e
-    _kana: "\u3048"
+    _alphabetNumber: 1
   - _alphabet: o
-    _kana: "\u304A"
+    _alphabetNumber: 1
   - _alphabet: ka
-    _kana: "\u304B"
+    _alphabetNumber: 1
   - _alphabet: ki
-    _kana: "\u304D"
+    _alphabetNumber: 1
   - _alphabet: ku
-    _kana: "\u304F"
+    _alphabetNumber: 1
   - _alphabet: ke
-    _kana: "\u3051"
+    _alphabetNumber: 1
   - _alphabet: ko
-    _kana: "\u3053"
+    _alphabetNumber: 1
   - _alphabet: sa
-    _kana: "\u3055"
+    _alphabetNumber: 1
   - _alphabet: si
-    _kana: "\u3057"
+    _alphabetNumber: 1
   - _alphabet: su
-    _kana: "\u3059"
+    _alphabetNumber: 1
   - _alphabet: se
-    _kana: "\u305B"
+    _alphabetNumber: 1
   - _alphabet: so
-    _kana: "\u305D"
+    _alphabetNumber: 1
   - _alphabet: ta
-    _kana: "\u305F"
+    _alphabetNumber: 1
   - _alphabet: chi
-    _kana: "\u3061"
+    _alphabetNumber: 1
   - _alphabet: tu
-    _kana: "\u3064"
+    _alphabetNumber: 1
   - _alphabet: te
-    _kana: "\u3066"
+    _alphabetNumber: 1
   - _alphabet: to
-    _kana: "\u3068"
+    _alphabetNumber: 1
   - _alphabet: na
-    _kana: "\u306A"
+    _alphabetNumber: 1
   - _alphabet: ni
-    _kana: "\u306B"
+    _alphabetNumber: 1
   - _alphabet: nu
-    _kana: "\u306C"
+    _alphabetNumber: 1
   - _alphabet: ne
-    _kana: "\u306D"
+    _alphabetNumber: 1
   - _alphabet: no
-    _kana: "\u306E"
+    _alphabetNumber: 1
   - _alphabet: ha
-    _kana: "\u306F"
+    _alphabetNumber: 1
   - _alphabet: hi
-    _kana: "\u3072"
+    _alphabetNumber: 1
   - _alphabet: hu
-    _kana: "\u3075"
+    _alphabetNumber: 1
   - _alphabet: he
-    _kana: "\u3078"
+    _alphabetNumber: 1
   - _alphabet: ho
-    _kana: "\u307B"
+    _alphabetNumber: 1
   - _alphabet: ma
-    _kana: "\u307E"
+    _alphabetNumber: 1
   - _alphabet: mi
-    _kana: "\u307F"
+    _alphabetNumber: 1
   - _alphabet: mu
-    _kana: "\u3080"
+    _alphabetNumber: 1
   - _alphabet: me
-    _kana: "\u3081"
+    _alphabetNumber: 1
   - _alphabet: mo
-    _kana: "\u3082"
+    _alphabetNumber: 1
   - _alphabet: ya
-    _kana: "\u3084"
+    _alphabetNumber: 1
   - _alphabet: yu
-    _kana: "\u3086"
+    _alphabetNumber: 1
   - _alphabet: yo
-    _kana: "\u3088"
+    _alphabetNumber: 1
   - _alphabet: ra
-    _kana: "\u3089"
+    _alphabetNumber: 1
   - _alphabet: ri
-    _kana: "\u308A"
+    _alphabetNumber: 1
   - _alphabet: ru
-    _kana: "\u308B"
+    _alphabetNumber: 1
   - _alphabet: re
-    _kana: "\u308C"
+    _alphabetNumber: 1
   - _alphabet: ro
-    _kana: "\u308D"
+    _alphabetNumber: 1
   - _alphabet: wa
-    _kana: "\u308F"
+    _alphabetNumber: 1
   - _alphabet: wo
-    _kana: "\u3092"
+    _alphabetNumber: 1
   - _alphabet: nn
-    _kana: "\u3093"
+    _alphabetNumber: 1
   - _alphabet: ga
-    _kana: "\u304C"
+    _alphabetNumber: 1
   - _alphabet: gi
-    _kana: "\u304E"
+    _alphabetNumber: 1
   - _alphabet: gu
-    _kana: "\u3050"
+    _alphabetNumber: 1
   - _alphabet: ge
-    _kana: "\u3052"
+    _alphabetNumber: 1
   - _alphabet: go
-    _kana: "\u3054"
+    _alphabetNumber: 1
   - _alphabet: za
-    _kana: "\u3056"
+    _alphabetNumber: 1
   - _alphabet: ji
-    _kana: "\u3058"
+    _alphabetNumber: 1
   - _alphabet: zu
-    _kana: "\u305A"
+    _alphabetNumber: 1
   - _alphabet: ze
-    _kana: "\u305C"
+    _alphabetNumber: 1
   - _alphabet: zo
-    _kana: "\u305E"
+    _alphabetNumber: 1
   - _alphabet: da
-    _kana: "\u3060"
+    _alphabetNumber: 1
   - _alphabet: di
-    _kana: "\u3062"
+    _alphabetNumber: 1
   - _alphabet: du
-    _kana: "\u3065"
+    _alphabetNumber: 1
   - _alphabet: de
-    _kana: "\u3067"
+    _alphabetNumber: 1
   - _alphabet: do
-    _kana: "\u3069"
+    _alphabetNumber: 1
   - _alphabet: ba
-    _kana: "\u3070"
+    _alphabetNumber: 1
   - _alphabet: bi
-    _kana: "\u3073"
+    _alphabetNumber: 1
   - _alphabet: bu
-    _kana: "\u3076"
+    _alphabetNumber: 1
   - _alphabet: be
-    _kana: "\u3079"
+    _alphabetNumber: 1
   - _alphabet: bo
-    _kana: "\u307C"
+    _alphabetNumber: 1
   - _alphabet: pa
-    _kana: "\u3071"
+    _alphabetNumber: 1
   - _alphabet: pi
-    _kana: "\u3074"
+    _alphabetNumber: 1
   - _alphabet: pu
-    _kana: "\u3077"
+    _alphabetNumber: 1
   - _alphabet: pe
-    _kana: "\u307A"
+    _alphabetNumber: 1
   - _alphabet: po
-    _kana: "\u307D"
+    _alphabetNumber: 1
   - _alphabet: gya
-    _kana: "\u304E\u3083"
+    _alphabetNumber: 2
   - _alphabet: gyu
-    _kana: "\u304E\u3085"
+    _alphabetNumber: 2
   - _alphabet: gyo
-    _kana: "\u304E\u3087"
+    _alphabetNumber: 2
   - _alphabet: kya
-    _kana: "\u304D\u3083"
+    _alphabetNumber: 2
   - _alphabet: kyu
-    _kana: "\u304D\u3085"
+    _alphabetNumber: 2
   - _alphabet: kyo
-    _kana: "\u304D\u3087"
+    _alphabetNumber: 2
   - _alphabet: ja
-    _kana: "\u3058\u3083"
+    _alphabetNumber: 2
   - _alphabet: ju
-    _kana: "\u3058\u3085"
+    _alphabetNumber: 2
   - _alphabet: jo
-    _kana: "\u3058\u3087"
+    _alphabetNumber: 2
   - _alphabet: sha
-    _kana: "\u3057\u3083"
+    _alphabetNumber: 2
   - _alphabet: shu
-    _kana: "\u3057\u3085"
+    _alphabetNumber: 2
   - _alphabet: sho
-    _kana: "\u3057\u3087"
+    _alphabetNumber: 2
   - _alphabet: cha
-    _kana: "\u3061\u3083"
+    _alphabetNumber: 2
   - _alphabet: chu
-    _kana: "\u3061\u3085"
+    _alphabetNumber: 2
   - _alphabet: cho
-    _kana: "\u3061\u3087"
+    _alphabetNumber: 2
   - _alphabet: hya
-    _kana: "\u3072\u3083"
+    _alphabetNumber: 2
   - _alphabet: hyu
-    _kana: "\u3072\u3085"
+    _alphabetNumber: 2
   - _alphabet: hyo
-    _kana: "\u3072\u3087"
+    _alphabetNumber: 2
   - _alphabet: nya
-    _kana: "\u306B\u3083"
+    _alphabetNumber: 2
   - _alphabet: nyu
-    _kana: "\u306B\u3085"
+    _alphabetNumber: 2
   - _alphabet: nyo
-    _kana: "\u306B\u3087"
+    _alphabetNumber: 2
   - _alphabet: bya
-    _kana: "\u3073\u3083"
+    _alphabetNumber: 2
   - _alphabet: byu
-    _kana: "\u3073\u3085"
+    _alphabetNumber: 2
   - _alphabet: byo
-    _kana: "\u3073\u3087"
+    _alphabetNumber: 2
   - _alphabet: pya
-    _kana: "\u3074\u3083"
+    _alphabetNumber: 2
   - _alphabet: pyu
-    _kana: "\u3074\u3085"
+    _alphabetNumber: 2
   - _alphabet: pyo
-    _kana: "\u3074\u3087"
+    _alphabetNumber: 2
   - _alphabet: mya
-    _kana: "\u307F\u3083"
+    _alphabetNumber: 2
   - _alphabet: myu
-    _kana: "\u307F\u3085"
+    _alphabetNumber: 2
   - _alphabet: myo
-    _kana: "\u307F\u3087"
+    _alphabetNumber: 2
   - _alphabet: rya
-    _kana: "\u308A\u3083"
+    _alphabetNumber: 2
   - _alphabet: ryu
-    _kana: "\u308A\u3085"
+    _alphabetNumber: 2
   - _alphabet: ryo
-    _kana: "\u308A\u3087"
+    _alphabetNumber: 2
+  - _alphabet: xtu
+    _alphabetNumber: 1
+  - _alphabet: kka
+    _alphabetNumber: 2
+  - _alphabet: kki
+    _alphabetNumber: 2
+  - _alphabet: kku
+    _alphabetNumber: 2
+  - _alphabet: kke
+    _alphabetNumber: 2
+  - _alphabet: kko
+    _alphabetNumber: 2
+  - _alphabet: ssa
+    _alphabetNumber: 2
+  - _alphabet: ssi
+    _alphabetNumber: 2
+  - _alphabet: ssu
+    _alphabetNumber: 2
+  - _alphabet: sse
+    _alphabetNumber: 2
+  - _alphabet: sso
+    _alphabetNumber: 2
+  - _alphabet: tta
+    _alphabetNumber: 2
+  - _alphabet: cchi
+    _alphabetNumber: 2
+  - _alphabet: tte
+    _alphabetNumber: 2
+  - _alphabet: tto
+    _alphabetNumber: 2
+  - _alphabet: hha
+    _alphabetNumber: 2
+  - _alphabet: hhi
+    _alphabetNumber: 2
+  - _alphabet: hhu
+    _alphabetNumber: 2
+  - _alphabet: hhe
+    _alphabetNumber: 2
+  - _alphabet: hho
+    _alphabetNumber: 2
+  - _alphabet: gga
+    _alphabetNumber: 2
+  - _alphabet: ggi
+    _alphabetNumber: 2
+  - _alphabet: ggu
+    _alphabetNumber: 2
+  - _alphabet: gge
+    _alphabetNumber: 2
+  - _alphabet: ggo
+    _alphabetNumber: 2
+  - _alphabet: zza
+    _alphabetNumber: 2
+  - _alphabet: jji
+    _alphabetNumber: 2
+  - _alphabet: zzu
+    _alphabetNumber: 2
+  - _alphabet: zze
+    _alphabetNumber: 2
+  - _alphabet: zzo
+    _alphabetNumber: 2
+  - _alphabet: dda
+    _alphabetNumber: 2
+  - _alphabet: ddi
+    _alphabetNumber: 2
+  - _alphabet: ddu
+    _alphabetNumber: 2
+  - _alphabet: dde
+    _alphabetNumber: 2
+  - _alphabet: ddo
+    _alphabetNumber: 2
+  - _alphabet: bba
+    _alphabetNumber: 2
+  - _alphabet: bbi
+    _alphabetNumber: 2
+  - _alphabet: bbu
+    _alphabetNumber: 1
+  - _alphabet: bbe
+    _alphabetNumber: 2
+  - _alphabet: bbo
+    _alphabetNumber: 2
+  - _alphabet: ppa
+    _alphabetNumber: 2
+  - _alphabet: ppi
+    _alphabetNumber: 2
+  - _alphabet: ppu
+    _alphabetNumber: 2
+  - _alphabet: ppe
+    _alphabetNumber: 2
+  - _alphabet: ppo
+    _alphabetNumber: 2
+  - _alphabet: ggya
+    _alphabetNumber: 3
+  - _alphabet: ggyu
+    _alphabetNumber: 3
+  - _alphabet: ggyo
+    _alphabetNumber: 3
+  - _alphabet: kkya
+    _alphabetNumber: 3
+  - _alphabet: kkyu
+    _alphabetNumber: 3
+  - _alphabet: kkyo
+    _alphabetNumber: 3
+  - _alphabet: jja
+    _alphabetNumber: 3
+  - _alphabet: jju
+    _alphabetNumber: 3
+  - _alphabet: jjo
+    _alphabetNumber: 3
+  - _alphabet: ssha
+    _alphabetNumber: 3
+  - _alphabet: sshu
+    _alphabetNumber: 3
+  - _alphabet: ssho
+    _alphabetNumber: 3
+  - _alphabet: ccha
+    _alphabetNumber: 3
+  - _alphabet: cchu
+    _alphabetNumber: 3
+  - _alphabet: ccho
+    _alphabetNumber: 3
+  - _alphabet: hhya
+    _alphabetNumber: 3
+  - _alphabet: hhyu
+    _alphabetNumber: 3
+  - _alphabet: hhyo
+    _alphabetNumber: 3
+  - _alphabet: bbya
+    _alphabetNumber: 3
+  - _alphabet: bbyu
+    _alphabetNumber: 3
+  - _alphabet: bbyo
+    _alphabetNumber: 3
+  - _alphabet: ppya
+    _alphabetNumber: 3
+  - _alphabet: ppyu
+    _alphabetNumber: 3
+  - _alphabet: ppyo
+    _alphabetNumber: 3

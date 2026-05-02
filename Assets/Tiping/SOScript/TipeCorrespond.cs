@@ -16,9 +16,9 @@ public class Correspond
 {
     [Header("ローマ字")]
     [SerializeField] private string _alphabet;
-    [Header("対応する文字")]
-    [SerializeField] private string _kana;
+    [Header("正解した時の文字数")]
+    [SerializeField] private int _alphabetNumber;
 
     public string Alphabet => _alphabet;
-    public string Kana => _kana;
+    public int AlphabetNumber => _alphabetNumber;
 }

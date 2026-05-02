@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Normal
   m_EditorClassIdentifier: Assembly-CSharp::TipeList
   _tipeList:
-  - _name: risuto
-    _kanaName: "\u308A\u3059\u3068"
+  - _name: raxtuko
+    _kanaName: "\u3089\u3063\u3053"

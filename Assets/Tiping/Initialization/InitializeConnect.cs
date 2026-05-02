@@ -3,7 +3,6 @@
 public class InitializeConnect : MonoBehaviour
 {
     private InitializeRuntime _initializeR;
-
     private void OnEnable()
     {
         var list = SelectTipeList._tipeList;

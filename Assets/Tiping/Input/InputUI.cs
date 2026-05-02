@@ -1,8 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class InputUI : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class InputUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _kanaText;
     [Header("ローマ字")]
     [SerializeField] private TextMeshProUGUI _romaText;
-    private Dictionary<string, string> _correspondWord = new Dictionary<string, string>();
+    private Dictionary<string, int> _correspondNumber = new Dictionary<string, int>();
     private int _kanaCount = 0;
     private string _roma = "";
     private string _kana;//現在打ったところまで入っている
@@ -21,7 +21,7 @@ public class InputUI : MonoBehaviour
     {
         foreach (var i in _tipeCorrespond.CorrespondList)
         {
-            _correspondWord.TryAdd(i.Alphabet, i.Kana);
+            _correspondNumber.TryAdd(i.Alphabet, i.AlphabetNumber);
         }//ローマ字に対応するひらがな
 
         EventBus.Subscribe<InitializeEvent>(this, InitializeUI);
@@ -41,15 +41,14 @@ public class InputUI : MonoBehaviour
     {
         _roma += c._correctChar;
         _romaText.text += c._correctChar;//今まで打ったとこまで入る
-        if (_correspondWord.TryGetValue(_roma, out var w))
+        if (_correspondNumber.TryGetValue(_roma, out var w))
         {
             Debug.Log(w);
-            _kanaCount++;
-            //入力済みだけ色が変わる？
+            _kanaCount += w;//正解したところまで黄色文字にする
             string colored = $"<color=yellow>{_kana.Substring(0, _kanaCount)}</color>" + _kana.Substring(_kanaCount);
             _kanaText.text = colored;
             _roma = "";
-        }//辞書に対応するひらがながあったら変更
+        }//正解したら合ってるところまで文字色を変える
     }
 
     /// <summary>

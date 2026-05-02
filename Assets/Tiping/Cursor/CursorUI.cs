@@ -27,7 +27,7 @@ public class CursorUI : MonoBehaviour
 
     private void Update()
     {
-        MoveCursor();   
+        MoveCursor();
     }
 
     private async UniTask BlinkCursor()
@@ -43,15 +43,41 @@ public class CursorUI : MonoBehaviour
 
     private void MoveCursor()
     {
-        if (_romaText.text.Length == 0)
-            _cursorTransform.anchoredPosition = _cursorInitializeOffset;
-        else
+        _romaText.ForceMeshUpdate();
+
+        var textInfo = _romaText.textInfo;
+
+        if (textInfo.characterCount == 0)
         {
-            var currentString = _romaText.textInfo.characterInfo;
-            var lastString = currentString[_romaText.text.Length - 1].bottomRight;
-            var x = lastString.x;
-            var y = lastString.y;
-            _cursorTransform.anchoredPosition = new Vector2(x, y);
-        }     
+            _cursorTransform.anchoredPosition = _cursorInitializeOffset;
+            return;
+        }
+
+        var charInfo = textInfo.characterInfo[textInfo.characterCount - 1];
+        float x = charInfo.xAdvance;
+        float y = charInfo.baseLine;
+        Vector3 change = new Vector3(x, y, 0);
+
+        // ① TMPローカル → ワールド
+        Vector3 worldPos = _romaText.transform.TransformPoint(change);
+
+        // ② ワールド → スクリーン
+        Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, worldPos);
+
+        // ③ スクリーン → Canvasローカル
+        RectTransform canvasRect = _cursorTransform.root as RectTransform;
+
+        Vector2 localPos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRect,
+            screenPos,
+            null,
+            out localPos
+        );
+
+        // 最終的に適用
+        _cursorTransform.anchoredPosition = localPos;
+        Debug.Log(charInfo.topRight);
+        Debug.Log(_cursorTransform.anchoredPosition);
     }
 }
