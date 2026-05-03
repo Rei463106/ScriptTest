@@ -10,6 +10,14 @@ public class SelectConnect : MonoBehaviour
     private void OnEnable()
     {
         _selectRuntime = new SelectRuntime(_nodeList);
+        SelectButtonEvents._rightAction += RightButton;
+        SelectButtonEvents._leftAction += LeftButton;
+    }
+
+    private void OnDisable()
+    {
+        SelectButtonEvents._rightAction -= RightButton;
+        SelectButtonEvents._leftAction -= LeftButton;
     }
 
     private void Update()
@@ -17,6 +25,10 @@ public class SelectConnect : MonoBehaviour
         Debug.Log(SelectTipeList._tipeList);
         if (Input.GetKeyDown(KeyCode.Z))
             DicisionButton();
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            SelectButtonEvents.RightAction();
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            SelectButtonEvents.LeftAction();
     }
 
     public void RightButton()
