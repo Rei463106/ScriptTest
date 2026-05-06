@@ -8,7 +8,9 @@ public class SelectDirection : MonoBehaviour
     [SerializeField] private AudioClip _selectClip;
     [Header("決定ボタン")]
     [SerializeField] private AudioClip _dicisionClip;
-  
+    [Header("Animator")]
+    [SerializeField] private Animator _animator;
+
     private void OnEnable()
     {
         SelectButtonEvents._rightAction += SelectSound;
@@ -23,11 +25,6 @@ public class SelectDirection : MonoBehaviour
         SelectButtonEvents._dicisionAction -= DicisionSound;
     }
 
-    private void Start()
-    {
-        m_AudioSource = GetComponent<AudioSource>();
-    }
-
     private void SelectSound()
     {
         m_AudioSource.PlayOneShot(_selectClip);
@@ -36,5 +33,6 @@ public class SelectDirection : MonoBehaviour
     private void DicisionSound()
     {
         m_AudioSource.PlayOneShot(_dicisionClip);
+        _animator.SetTrigger("Move");
     }
 }
