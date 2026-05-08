@@ -1,18 +1,18 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 
 public static class EventBus
 {
-    /// <summary>ƒCƒxƒ“ƒgƒg[ƒNƒ“‚ÆÀs‚·‚éƒAƒNƒVƒ‡ƒ“‚Ì‘Î‰•\</summary>
+    /// <summary>ã‚¤ãƒ™ãƒ³ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã¨å®Ÿè¡Œã™ã‚‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®å¯¾å¿œè¡¨</summary>
     static readonly Dictionary<Type, List<Delegate>> _subscribers = new();
-    /// <summary>ƒCƒxƒ“ƒgw“ÇÒ‚Æíœ‚·‚éƒAƒNƒVƒ‡ƒ“‚Ì‘Î‰•\</summary>
+    /// <summary>ã‚¤ãƒ™ãƒ³ãƒˆè³¼èª­è€…ã¨å‰Šé™¤ã™ã‚‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã®å¯¾å¿œè¡¨</summary>
     static readonly Dictionary<object, List<IDisposable>> _ownerMap = new();
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ğ”­‰Î‚·‚éƒƒ\ƒbƒh
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç«ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     /// </summary>
-    /// <typeparam name="TEvent">”­‰Î‚·‚éƒCƒxƒ“ƒg‚É‘Î‰‚·‚éƒg[ƒNƒ“‚Ìƒf[ƒ^Œ^</typeparam>
-    /// <param name="e">”­‰Î‚·‚éƒCƒxƒ“ƒg‚É‘Î‰‚·‚éƒg[ƒNƒ“</param>
+    /// <typeparam name="TEvent">ç™ºç«ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã«å¯¾å¿œã™ã‚‹ãƒˆãƒ¼ã‚¯ãƒ³ã®ãƒ‡ãƒ¼ã‚¿å‹</typeparam>
+    /// <param name="e">ç™ºç«ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã«å¯¾å¿œã™ã‚‹ãƒˆãƒ¼ã‚¯ãƒ³</param>
     public static void Publish<TEvent>(TEvent e) where TEvent : struct, IEvent
     {
         var type = typeof(TEvent);
@@ -26,12 +26,12 @@ public static class EventBus
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ğw“Ç‚·‚éƒƒ\ƒbƒh
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã‚’è³¼èª­ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     /// </summary>
-    /// <typeparam name="TEvent">w“Ç‚·‚éƒCƒxƒ“ƒg‚Ì‚É‘Î‰‚·‚éƒg[ƒNƒ“‚Ìƒf[ƒ^Œ^</typeparam>
-    /// <param name="owner">ƒCƒxƒ“ƒg‚Ìw“ÇÒ</param>
-    /// <param name="handler">“o˜^‚·‚éƒAƒNƒVƒ‡ƒ“</param>
-    /// <returns>ƒAƒNƒVƒ‡ƒ“íœˆ—</returns>
+    /// <typeparam name="TEvent">è³¼èª­ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã®ã«å¯¾å¿œã™ã‚‹ãƒˆãƒ¼ã‚¯ãƒ³ã®ãƒ‡ãƒ¼ã‚¿å‹</typeparam>
+    /// <param name="owner">ã‚¤ãƒ™ãƒ³ãƒˆã®è³¼èª­è€…</param>
+    /// <param name="handler">ç™»éŒ²ã™ã‚‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³</param>
+    /// <returns>ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‰Šé™¤å‡¦ç†</returns>
     public static IDisposable Subscribe<TEvent>(object owner, Action<TEvent> handler) where TEvent : struct, IEvent
     {
         if (owner == null) return null;
@@ -73,9 +73,9 @@ public static class EventBus
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚Ìw“Ç‚ğ‰ğœ‚·‚éƒƒ\ƒbƒh
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã®è³¼èª­ã‚’è§£é™¤ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     /// </summary>
-    /// <param name="owner">ƒCƒxƒ“ƒgw“Ç‚Ì‰ğœÒ</param>
+    /// <param name="owner">ã‚¤ãƒ™ãƒ³ãƒˆè³¼èª­ã®è§£é™¤è€…</param>
     public static void Unsubscribe(object owner)
     {
         if (owner == null) return;
@@ -89,7 +89,7 @@ public static class EventBus
     }
 
     /// <summary>
-    /// ‚·‚×‚Ä‚ÌƒCƒxƒ“ƒgw“Ç‚ğ‰ğœ‚·‚éƒƒ\ƒbƒh
+    /// ã™ã¹ã¦ã®ã‚¤ãƒ™ãƒ³ãƒˆè³¼èª­ã‚’è§£é™¤ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     /// </summary>
     public static void Clear()
     {
@@ -98,10 +98,10 @@ public static class EventBus
     }
 
     /// <summary>
-    /// Œ»İ‚ÌƒCƒxƒ“ƒgw“ÇÒ‚Ì”‚ğæ“¾‚·‚éƒƒ\ƒbƒh
+    /// ç¾åœ¨ã®ã‚¤ãƒ™ãƒ³ãƒˆè³¼èª­è€…ã®æ•°ã‚’å–å¾—ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     /// </summary>
-    /// <typeparam name="TEvent">w“ÇÒ”‚ğæ“¾‚·‚éƒCƒxƒ“ƒg‚É‘Î‰‚·‚éƒg[ƒNƒ“‚Ìƒf[ƒ^Œ^</typeparam>
-    /// <returns>Œ»İ‚ÌƒCƒxƒ“ƒgw“ÇÒ‚Ì”</returns>
+    /// <typeparam name="TEvent">è³¼èª­è€…æ•°ã‚’å–å¾—ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã«å¯¾å¿œã™ã‚‹ãƒˆãƒ¼ã‚¯ãƒ³ã®ãƒ‡ãƒ¼ã‚¿å‹</typeparam>
+    /// <returns>ç¾åœ¨ã®ã‚¤ãƒ™ãƒ³ãƒˆè³¼èª­è€…ã®æ•°</returns>
     public static int GetSubscriberCount<TEvent>() where TEvent : struct, IEvent
     {
         var type = typeof(TEvent);
@@ -111,25 +111,25 @@ public static class EventBus
     }
 
     /// <summary>
-    /// ƒCƒxƒ“ƒgw“Ç‚ğ‰ğœ‚·‚éƒNƒ‰ƒX
+    /// ã‚¤ãƒ™ãƒ³ãƒˆè³¼èª­ã‚’è§£é™¤ã™ã‚‹ã‚¯ãƒ©ã‚¹
     /// </summary>
     private sealed class Subscription : IDisposable
     {
-        /// <summary>w“Ç‚ğ‰ğœ‚·‚éƒAƒNƒVƒ‡ƒ“</summary>
+        /// <summary>è³¼èª­ã‚’è§£é™¤ã™ã‚‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³</summary>
         readonly Action _dispose;
         bool _disposed;
 
         /// <summary>
-        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
         /// </summary>
-        /// <param name="dispose">w“Ç‰ğœ‚ğ‚·‚éƒAƒNƒVƒ‡ƒ“</param>
+        /// <param name="dispose">è³¼èª­è§£é™¤ã‚’ã™ã‚‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³</param>
         public Subscription(Action dispose)
         {
             _dispose = dispose ?? throw new ArgumentNullException(nameof(dispose));
         }
 
         /// <summary>
-        /// w“Ç‚ğ‰ğœ‚·‚éƒƒ\ƒbƒh
+        /// è³¼èª­ã‚’è§£é™¤ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
         /// </summary>
         public void Dispose()
         {
