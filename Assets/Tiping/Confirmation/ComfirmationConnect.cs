@@ -16,11 +16,6 @@ public class ComfirmationConnect : MonoBehaviour
         EventBus.Unsubscribe(this);
     }
 
-    private void Update()
-    {
-        Debug.Log(_currentChar);
-    }
-
     public int ReturnCount()
     {
         return _comfirmationR.ReturnQueueCount();
@@ -45,7 +40,6 @@ public class ComfirmationConnect : MonoBehaviour
     {
         if (c._inputChar == _currentChar)
         {
-            Debug.Log("正解です");
             EventBus.Publish(new CorrectEvent(c._inputChar));
             _currentChar = _comfirmationR.DequeueComfirmation();
         }

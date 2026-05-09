@@ -24,7 +24,6 @@ public class SelectConnect : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(SelectTipeList._tipeList);
         if (Input.GetKeyDown(KeyCode.Z))
             SelectButtonEvents.DicisionAction();
         else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))

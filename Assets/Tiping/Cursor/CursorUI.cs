@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,8 @@ public class CursorUI : MonoBehaviour
 
     private void Start()
     {
-        BlinkCursor().Forget();
+        var ct = this.GetCancellationTokenOnDestroy();
+        BlinkCursor(ct).Forget();
     }
 
     private void Update()
@@ -30,14 +32,16 @@ public class CursorUI : MonoBehaviour
         MoveCursor();
     }
 
-    private async UniTask BlinkCursor()
+    private async UniTask BlinkCursor(CancellationToken token)
     {
         while (i == 0)
         {
             _cursor.enabled = true;
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: token);
             _cursor.enabled = false;
-            await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: token);
+
+            await UniTask.Yield();
         }
     }
 
@@ -77,7 +81,5 @@ public class CursorUI : MonoBehaviour
 
         // 最終的に適用
         _cursorTransform.anchoredPosition = localPos;
-        Debug.Log(charInfo.topRight);
-        Debug.Log(_cursorTransform.anchoredPosition);
     }
 }

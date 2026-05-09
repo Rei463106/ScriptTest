@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using System.Threading;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectDirection : MonoBehaviour
 {
@@ -8,8 +12,12 @@ public class SelectDirection : MonoBehaviour
     [SerializeField] private AudioClip _selectClip;
     [Header("決定ボタン")]
     [SerializeField] private AudioClip _dicisionClip;
-    [Header("Animator")]
-    [SerializeField] private Animator _animator;
+    [Header("FadeImage")]
+    [SerializeField] private Image _fadeImage;
+    [Header("SceneMove")]
+    [SerializeField] private SceneMoveManager _sceneM;
+
+    private CancellationToken _token;
 
     private void OnEnable()
     {
@@ -25,6 +33,13 @@ public class SelectDirection : MonoBehaviour
         SelectButtonEvents._dicisionAction -= DicisionSound;
     }
 
+    private void Start()
+    {
+        _token = this.GetCancellationTokenOnDestroy();
+        StartAnim(_token).Forget();
+
+    }
+
     private void SelectSound()
     {
         m_AudioSource.PlayOneShot(_selectClip);
@@ -33,6 +48,17 @@ public class SelectDirection : MonoBehaviour
     private void DicisionSound()
     {
         m_AudioSource.PlayOneShot(_dicisionClip);
-        _animator.SetTrigger("Move");
+        FinishAnim(_token).Forget();
+    }
+
+    private async UniTask StartAnim(CancellationToken token)
+    {
+        await _fadeImage.DOFade(0f, 2f).ToUniTask(cancellationToken: token);
+    }
+
+    private async UniTask FinishAnim(CancellationToken token)
+    {
+        await _fadeImage.DOFade(1f, 2f).ToUniTask(cancellationToken: token);
+        _sceneM.SceneMove("TipingGame");
     }
 }

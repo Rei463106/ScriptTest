@@ -43,7 +43,6 @@ public class InputUI : MonoBehaviour
         _romaText.text += c._correctChar;//今まで打ったとこまで入る
         if (_correspondNumber.TryGetValue(_roma, out var w))
         {
-            Debug.Log(w);
             _kanaCount += w;//正解したところまで黄色文字にする
             string colored = $"<color=yellow>{_kana.Substring(0, _kanaCount)}</color>" + _kana.Substring(_kanaCount);
             _kanaText.text = colored;

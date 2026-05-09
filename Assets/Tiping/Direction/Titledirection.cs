@@ -1,21 +1,16 @@
 ﻿using Cysharp.Threading.Tasks;
-using System;
 using System.Threading;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// タイトル時の演出
 /// </summary>
 public class TitleDirection : MonoBehaviour
 {
-    [Header("タイトルAnimator")]
-    [SerializeField] private Animator _titleAnimator;
-    [Header("シーン遷移Animator")]
-    [SerializeField] private Animator _sceneAnimator;
-    [Header("タイトル")]
-    [SerializeField] private GameObject _titleObject;
-    [Header("タイトル前のAnimationClip")]
-    [SerializeField] private AnimationClip _clip;
+    [Header("Fade")]
+    [SerializeField] private Image _fadeImage;
     [Header("SE用")]
     [SerializeField] private AudioSource _seSource;
     [Header("指パッチン")]
@@ -24,59 +19,29 @@ public class TitleDirection : MonoBehaviour
     [SerializeField] private AudioClip _bgmClip;
     [Header("決定音")]
     [SerializeField] private AudioClip _scenePatchClip;
-   
+    [Header("SceneManager")]
+    [SerializeField] private SceneMoveManager _sceneM;
+
     private AudioSource _source;
-    private CancellationTokenSource _token;
-    private bool _isPush = false;
+    private CancellationToken _token;
 
     private void Start()
     {
+        _fadeImage.DOFade(0f, 0f);
         _source = GetComponent<AudioSource>();
-        _token = new CancellationTokenSource();
-        Title(_token.Token).Forget();
+        _token = this.GetCancellationTokenOnDestroy();
     }
 
     private void Update()
     {
-        if (_isPush && Input.anyKeyDown)
-            _token.Cancel();
+        if (Input.anyKeyDown)
+            FinishAnim(_token).Forget();
     }
 
-    private async UniTask Title(CancellationToken token)
+    private async UniTask FinishAnim(CancellationToken token)
     {
-        _seSource.PlayOneShot(_patchClip);
-        _titleAnimator.SetTrigger("Movie");
-        _isPush = true;
-        bool push = true;
-        try
-        {
-            await UniTask.Delay(TimeSpan.FromSeconds(_clip.length), cancellationToken: token);
-            _isPush = false;
-        }
-        catch (OperationCanceledException)
-        {
-            Debug.Log("キャンセルされました");
-            _titleAnimator.gameObject.SetActive(false);
-        }
-        finally
-        {
-            _titleAnimator.gameObject.SetActive(false);
-            _source.clip = _bgmClip;
-            _source.Play();
-        }
-
-        while (push)
-        {
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                _seSource.PlayOneShot(_scenePatchClip);
-                Debug.Log("再生");
-                push = false;
-                _sceneAnimator.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1000;
-                _sceneAnimator.SetTrigger("Move");
-            }
-            await UniTask.Yield();
-        }
+        await _fadeImage.DOFade(1f, 2f).ToUniTask(cancellationToken: token);
+        _sceneM.SceneMove("TipingsSelect");
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,25 +20,30 @@ public class InGameDirection : MonoBehaviour
     [Header("SceneManager")]
     [SerializeField] private SceneMoveManager _sceneM;
 
-    public async UniTask StartAnim()
+    private void Start()
     {
-        await UniTask.WhenAll(_fadeImage.DOFade(0f, 2f).ToUniTask());
-        _textAnimator.Play("Start");
-        await UniTask.Delay(TimeSpan.FromSeconds(_startClip.length));
-    }
-
-    public async UniTask CorrectAnim()
-    {
-        _coreectText.text = "Correct!!";
-        await UniTask.Delay(TimeSpan.FromSeconds(1f));
         _coreectText.text = "";
     }
 
-    public async UniTask FinishAnim()
+    public async UniTask StartAnim(CancellationToken token)
+    {
+        await _fadeImage.DOFade(0f, 3f).ToUniTask(cancellationToken: token);
+        _textAnimator.Play("Start");
+        await UniTask.Delay(TimeSpan.FromSeconds(_startClip.length), cancellationToken: token);
+    }
+
+    public async UniTask CorrectAnim(CancellationToken token)
+    {
+        _coreectText.text = "Correct!!";
+        await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: token);
+        _coreectText.text = "";
+    }
+
+    public async UniTask FinishAnim(CancellationToken token)
     {
         _textAnimator.SetTrigger("Finish");
-        await UniTask.Delay(TimeSpan.FromSeconds(_finishClip.length));
-        await UniTask.WhenAll(_fadeImage.DOFade(1f, 2f).ToUniTask());
+        await UniTask.Delay(TimeSpan.FromSeconds(_finishClip.length), cancellationToken: token);
+        await _fadeImage.DOFade(1f, 2f).ToUniTask(cancellationToken: token);
         _sceneM.SceneMove("Result");
     }
 }

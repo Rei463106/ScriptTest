@@ -1,12 +1,50 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TimerConnect : MonoBehaviour
 {
-    [Header("TimerUI")]
-    [SerializeField] private TimerUI _timerUI;
+    [Header("制限時間")]
+    [SerializeField] private float _limitTime;
 
-    public float CurrentTime()
+    private float _currentTime;
+
+    private void OnEnable()
     {
-        return _timerUI.ReturnTime();
+        EventBus.Subscribe<InitializeEvent>(this, InitializeTime);
+        EventBus.Subscribe<FinishEvent>(this, HandOverTime);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(this);
+    }
+
+    private void Start()
+    {
+        _currentTime = _limitTime;
+    }
+
+    private void Update()
+    {
+        if (TimerMove._timerEnum == TimerEnum.MoveTime)
+        {
+            _currentTime -= Time.deltaTime;
+            EventBus.Publish(new TimerEvent(_currentTime, _limitTime));
+        }
+    }
+
+    public float ReturnTime()
+    {
+        return _currentTime;
+    }
+
+    private void InitializeTime(InitializeEvent i)
+    {
+        TimerMove._timerEnum = TimerEnum.None;
+    }
+
+    private void HandOverTime(FinishEvent f)
+    {
+        TimerMove._timerEnum = TimerEnum.None;
+        StaticResult._finalTime = _currentTime;
     }
 }

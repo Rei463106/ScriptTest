@@ -1,5 +1,3 @@
-using Cysharp.Threading.Tasks;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,29 +11,25 @@ public class SelectUI : MonoBehaviour
     [SerializeField] private Image _rightButton;
     [Header("左ボタン")]
     [SerializeField] private Image _leftButton;
-    [Header("アニメーション移動")]
-    [SerializeField] private GameObject _animObject;
+
     private int _currentIndex = 0;
 
     private void OnEnable()
     {
         SelectButtonEvents._rightAction += RightButton;
-        SelectButtonEvents._leftAction += LeftButton;
-        SelectButtonEvents._dicisionAction += DicisionButton;
+        SelectButtonEvents._leftAction += LeftButton;      
     }
 
     private void OnDisable()
     {
         SelectButtonEvents._rightAction -= RightButton;
         SelectButtonEvents._leftAction -= LeftButton;
-        SelectButtonEvents._dicisionAction -= DicisionButton;
     }
 
     private void Start()
     {
-        _animObject.SetActive(false);
         _player.transform.position = _objects[_currentIndex].transform.position;
-        _animObject.transform.position = _objects[_currentIndex].transform.position;
+
         var n = _leftButton.color;
         n.a = 0.5f;
         _leftButton.color = n;
@@ -50,7 +44,6 @@ public class SelectUI : MonoBehaviour
         {
             _currentIndex++;
             _player.transform.position = _objects[_currentIndex].transform.position;
-            _animObject.transform.position= _objects[_currentIndex].transform.position;
 
             if (_currentIndex == _objects.Length - 1)
             {
@@ -80,7 +73,6 @@ public class SelectUI : MonoBehaviour
         {
             _currentIndex--;
             _player.transform.position = _objects[_currentIndex].transform.position;
-            _animObject.transform.position = _objects[_currentIndex].transform.position;
 
             if (_currentIndex == 0)
             {
@@ -99,10 +91,5 @@ public class SelectUI : MonoBehaviour
         {
             return;
         }
-    }
-
-    private void DicisionButton()
-    {
-        _animObject.SetActive(true);
     }
 }
