@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ResultConnect : MonoBehaviour
 {
+    [Header("Rank")]
+    [SerializeField] private Rank _rank;
     private Dictionary<RankScore, string> _rankDictionaly = new Dictionary<RankScore, string>();
     private int _correctCount;
-    private Rank _rank;
 
     private void OnEnable()
     {

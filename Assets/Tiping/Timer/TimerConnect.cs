@@ -2,10 +2,13 @@
 
 public class TimerConnect : MonoBehaviour
 {
+    [Header("ingameDirection")]
+    [SerializeField] private InGameDirection _direction;
     [Header("制限時間")]
     [SerializeField] private float _limitTime;
 
     private float _currentTime;
+    private bool _isStop = false;
 
     private void OnEnable()
     {
@@ -30,11 +33,12 @@ public class TimerConnect : MonoBehaviour
             _currentTime -= Time.deltaTime;
             EventBus.Publish(new TimerEvent(_currentTime, _limitTime));
         }
-    }
 
-    public float ReturnTime()
-    {
-        return _currentTime;
+        if (_currentTime <= 0 && !_isStop)
+        {
+            _isStop = true;
+            _direction.Finish();
+        }
     }
 
     private void InitializeTime(InitializeEvent i)

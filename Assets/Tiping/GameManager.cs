@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             //箱の数が0になったら終わり
-            if (_initializeC.ReturnCount() <= 0)
+            if (_initializeC.ReturnCount() < 0)
                 break;
 
             //問題
@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour
             //ループ
             _initializeC.GoInitializeExecute();
             InputChange._state = InputState.None;
+            TimerMove._timerEnum = TimerEnum.MoveTime;
         }
 
-        //ゲーム終了     
-        EventBus.Publish(new FinishEvent());
-        await _ingameDirection.FinishAnim(token);
+        //終了
+        _ingameDirection.Finish();
     }
 }

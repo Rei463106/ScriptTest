@@ -15,7 +15,7 @@ public class InitializeConnect : MonoBehaviour
     /// <returns></returns>
     public int ReturnCount()
     {
-        return _initializeR.tipeQueue.Count;
+        return _initializeR.Count;
     }
 
     public void GoInitializeExecute()

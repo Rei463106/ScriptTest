@@ -1095,6 +1095,7 @@ GameObject:
   - component: {fileID: 926867583}
   - component: {fileID: 926867584}
   - component: {fileID: 926867582}
+  - component: {fileID: 926867588}
   - component: {fileID: 926867587}
   - component: {fileID: 926867586}
   m_Layer: 0
@@ -1197,7 +1198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ea31436a5f86a4a85e11724919a8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerUI
-  _ingameDirection: {fileID: 0}
+  _ingameDirection: {fileID: 926867587}
   _timerImage: {fileID: 4390953}
   _secondHand: {fileID: 656957932}
 --- !u!114 &926867583
@@ -1228,6 +1229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60156b96d579dd3499a15c4493a00ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerConnect
+  _direction: {fileID: 926867587}
   _limitTime: 30
 --- !u!114 &926867585
 MonoBehaviour:
@@ -1272,9 +1274,23 @@ MonoBehaviour:
   _textAnimator: {fileID: 58906054}
   _startClip: {fileID: 7400000, guid: 3a83b58844e217e4e86c3d92061d7939, type: 2}
   _finishClip: {fileID: 7400000, guid: 82244be4d14625945916dd83b1cd741a, type: 2}
+  _animText: {fileID: 58906055}
   _coreectText: {fileID: 651836365}
   _fadeImage: {fileID: 1223156703}
   _sceneM: {fileID: 926867586}
+--- !u!114 &926867588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926867575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879ca7c99534ce94da80c88a7904f5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResultConnect
+  _rank: {fileID: 11400000, guid: a644ebfdb9e0a414eb273e94182480cb, type: 2}
 --- !u!1 &1223156701
 GameObject:
   m_ObjectHideFlags: 0
