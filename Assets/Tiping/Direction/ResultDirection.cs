@@ -19,8 +19,9 @@ public class ResultDirection : MonoBehaviour
     [SerializeField] private Text _correctSecond;
     [Header("CorrectRank")]
     [SerializeField] private Text _correctRank;
+    [Header("SceneManager")]
+    [SerializeField] private SceneMoveManager _sceneM;
 
-    
     private void Start()
     {
         var ct = this.GetCancellationTokenOnDestroy();
@@ -42,5 +43,12 @@ public class ResultDirection : MonoBehaviour
         _correctSecond.text = Mathf.RoundToInt(StaticResult._finalTime).ToString();
         await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: token);
         _correctRank.text = StaticResult._finalRank;
+
+        while (true)
+        {
+            if (Input.anyKeyDown)
+                break;
+        }
+        _sceneM.SceneMove("TipingTitle");
     }
 }
