@@ -4,12 +4,13 @@ using System;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Video;
 
 public class ResultDirection : MonoBehaviour
 {
+    [Header("Animator")]
+    [SerializeField] private Animator _animator;
     [Header("ResultClip")]
-    [SerializeField] private VideoClip _clip;
+    [SerializeField] private AnimationClip _clip;
     [Header("Menu")]
     [SerializeField] private Text[] _menuText;
     [Header("CorrectNumber")]
@@ -33,7 +34,6 @@ public class ResultDirection : MonoBehaviour
 
     private void Start()
     {
-        _fade.DOFade(0f, 0f);
         _toGoTitleText.DOFade(0f, 0f);
         var ct = this.GetCancellationTokenOnDestroy();
         Result(ct).Forget();
@@ -41,7 +41,9 @@ public class ResultDirection : MonoBehaviour
 
     private async UniTask Result(CancellationToken token)
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(_clip.length), cancellationToken: token);
+        _animator?.SetTrigger("Result");
+        await _fade.DOFade(0f, 2f).ToUniTask(cancellationToken: token);      
+        await UniTask.Delay(TimeSpan.FromSeconds(_clip.length + 1.5f), cancellationToken: token);
         foreach (var item in _menuText)
         {
             var i = item.color;
@@ -57,7 +59,7 @@ public class ResultDirection : MonoBehaviour
         _correctRank.text = StaticResult._finalRank;
         await _toGoTitleText.DOFade(1f, 0f).ToUniTask(cancellationToken: token);
 
-        await UniTask.WaitUntil(() => Input.anyKeyDown, cancellationToken: token);
+        await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Z), cancellationToken: token);
         _seSource.PlayOneShot(_dicisionClip);
         await _fade.DOFade(1f, 2f).ToUniTask(cancellationToken: token);
         _sceneM.SceneMove("TipingTitle");

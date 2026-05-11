@@ -49,6 +49,6 @@ public class TimerConnect : MonoBehaviour
     private void HandOverTime(FinishEvent f)
     {
         TimerMove._timerEnum = TimerEnum.None;
-        StaticResult._finalTime = _currentTime;
+        StaticResult._finalTime = _limitTime - _currentTime;
     }
 }
