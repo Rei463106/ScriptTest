@@ -24,6 +24,10 @@ public class ResultDirection : MonoBehaviour
     [SerializeField] private Text _toGoTitleText;
     [Header("Fade")]
     [SerializeField] private Image _fade;
+    [Header("SESourse")]
+    [SerializeField] private AudioSource _seSource;
+    [Header("決定音")]
+    [SerializeField] private AudioClip _dicisionClip;
     [Header("SceneManager")]
     [SerializeField] private SceneMoveManager _sceneM;
 
@@ -54,6 +58,7 @@ public class ResultDirection : MonoBehaviour
         await _toGoTitleText.DOFade(1f, 0f).ToUniTask(cancellationToken: token);
 
         await UniTask.WaitUntil(() => Input.anyKeyDown, cancellationToken: token);
+        _seSource.PlayOneShot(_dicisionClip);
         await _fade.DOFade(1f, 2f).ToUniTask(cancellationToken: token);
         _sceneM.SceneMove("TipingTitle");
     }

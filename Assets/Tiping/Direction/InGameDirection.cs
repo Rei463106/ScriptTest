@@ -27,6 +27,8 @@ public class InGameDirection : MonoBehaviour
     [SerializeField] private AudioSource _seSource;
     [Header("BGMClip")]
     [SerializeField] private AudioClip _bgmClip;
+    [Header("StartClip")]
+    [SerializeField] private AudioClip _startSEClip;
     [Header("FinishClip")]
     [SerializeField] private AudioClip _finishSEClip;
 
@@ -41,6 +43,7 @@ public class InGameDirection : MonoBehaviour
     public async UniTask StartAnim(CancellationToken token)
     {
         await _fadeImage.DOFade(0f, 3f).ToUniTask(cancellationToken: token);
+        _seSource.PlayOneShot(_startSEClip);
         _textAnimator.Play("Start");
         await UniTask.Delay(TimeSpan.FromSeconds(_startClip.length), cancellationToken: token);
         _bgmSource.clip = _bgmClip;

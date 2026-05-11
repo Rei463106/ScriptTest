@@ -1,12 +1,21 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using System.Threading;
+using UnityEngine;
 
 public class InputConnect : MonoBehaviour
 {
+    [Header("SESource")]
+    [SerializeField] private AudioSource _seSource;
+    [Header("PushSound")]
+    [SerializeField] private AudioClip _seClip;
+
     private void OnEnable()
     {
         EventBus.Subscribe<InitializeEvent>(this, InitializeInput);
         EventBus.Subscribe<AllConnectEvent>(this, AllConnectInput);
         EventBus.Subscribe<FinishEvent>(this, FinishInput);
+        var ct = this.GetCancellationTokenOnDestroy();
+        InputString(ct).Forget();
     }
 
     private void OnDisable()
@@ -14,16 +23,25 @@ public class InputConnect : MonoBehaviour
         EventBus.Unsubscribe(this);
     }
 
-    private void Update()
+    /// <summary>
+    /// 入力を受け取る
+    /// </summary>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    private async UniTask InputString(CancellationToken token)
     {
-        var s = Input.inputString;
-        if (!string.IsNullOrEmpty(s))
+        while (true)
         {
+            await UniTask.WaitUntil(() => Input.anyKeyDown, cancellationToken: token);
+            string s = Input.inputString;
             if (InputChange._state == InputState.None)
             {
+                _seSource.PlayOneShot(_seClip);
                 var k = s[0];
                 EventBus.Publish(new ConfirmationEvent(k));//確認
             }
+            else
+                continue;
         }
     }
 
