@@ -21,6 +21,14 @@ public class InGameDirection : MonoBehaviour
     [SerializeField] private Image _fadeImage;
     [Header("SceneManager")]
     [SerializeField] private SceneMoveManager _sceneM;
+    [Header("BGM")]
+    [SerializeField] private AudioSource _bgmSource;
+    [Header("SE")]
+    [SerializeField] private AudioSource _seSource;
+    [Header("BGMClip")]
+    [SerializeField] private AudioClip _bgmClip;
+    [Header("FinishClip")]
+    [SerializeField] private AudioClip _finishSEClip;
 
     private CancellationToken _token;
 
@@ -35,6 +43,8 @@ public class InGameDirection : MonoBehaviour
         await _fadeImage.DOFade(0f, 3f).ToUniTask(cancellationToken: token);
         _textAnimator.Play("Start");
         await UniTask.Delay(TimeSpan.FromSeconds(_startClip.length), cancellationToken: token);
+        _bgmSource.clip = _bgmClip;
+        _bgmSource.Play();
     }
 
     public async UniTask CorrectAnim(CancellationToken token)
@@ -48,6 +58,7 @@ public class InGameDirection : MonoBehaviour
     {
         _animText.text = "Finish!!";
         _textAnimator.SetTrigger("Finish");
+        _seSource.PlayOneShot(_finishSEClip);
         await UniTask.Delay(TimeSpan.FromSeconds(_finishClip.length), cancellationToken: token);
         await _fadeImage.DOFade(1f, 2f).ToUniTask(cancellationToken: token);
         _sceneM.SceneMove("Result");
