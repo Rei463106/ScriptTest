@@ -11,15 +11,6 @@ public class ComfirationRuntime
     }
 
     /// <summary>
-    /// 次に進めるかどうか
-    /// </summary>
-    /// <returns></returns>
-    public int ReturnQueueCount()
-    {
-       return _count;
-    }
-
-    /// <summary>
     /// 現在の文字を返す
     /// </summary>
     /// <param name="ch"></param>
@@ -27,14 +18,9 @@ public class ComfirationRuntime
     public char DequeueComfirmation()
     {
         if (_comfirmationP.Queue.Count > 0)
-        {
-            _count--;
+
             return _comfirmationP.Queue.Dequeue();
-        }
         else
-        {
-            _count--;
             return '\0';
-        }
     }
 }

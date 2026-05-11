@@ -5,6 +5,8 @@ public class ComfirmationConnect : MonoBehaviour
     private ComfirationRuntime _comfirmationR;
     private char _currentChar;//現在の文字を入れる
 
+    public char CurrentChar => _currentChar;
+
     private void OnEnable()
     {
         EventBus.Subscribe<InitializeEvent>(this, InstatiateRuntime);
@@ -14,11 +16,6 @@ public class ComfirmationConnect : MonoBehaviour
     private void OnDisable()
     {
         EventBus.Unsubscribe(this);
-    }
-
-    public int ReturnCount()
-    {
-        return _comfirmationR.ReturnQueueCount();
     }
 
     /// <summary>

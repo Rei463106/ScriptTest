@@ -6,9 +6,8 @@
 public class InitializeRuntime
 {
     private Queue<TipeName> _tipeQueue = new Queue<TipeName>();
-    private int _count;
 
-    public int Count => _count;
+    public int TipeQueue => _tipeQueue.Count;
 
     public InitializeRuntime(TipeList tipeList)
     {
@@ -16,7 +15,6 @@ public class InitializeRuntime
         {
             _tipeQueue.Enqueue(t);
         }
-        _count = _tipeQueue.Count;
     }
 
     /// <summary>
@@ -25,15 +23,6 @@ public class InitializeRuntime
     /// <returns></returns>
     public void InitializeExecute()
     {
-        if (_count > 0)
-        {
-            EventBus.Publish(new InitializeEvent(_tipeQueue.Dequeue()));
-            _count--;
-        }
-        else
-        {
-            _count = -1;
-            return;
-        }
+        EventBus.Publish(new InitializeEvent(_tipeQueue.Dequeue()));
     }
 }

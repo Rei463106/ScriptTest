@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     private async UniTask WaitGameFinish(CancellationToken token)
     {
         //初期化フェーズ
-        _initializeC.GoInitializeExecute();
         await _ingameDirection.StartAnim(token);
         InputChange._state = InputState.None;
         TimerMove._timerEnum = TimerEnum.MoveTime;
@@ -30,21 +29,20 @@ public class GameManager : MonoBehaviour
         //入力フェーズ
         while (true)
         {
-            //箱の数が0になったら終わり
-            if (_initializeC.ReturnCount() < 0)
+            var c = _initializeC.GoInitializeExecute();//問題が残ってるか調べる
+            if (c > 0)
+            {
+                InputChange._state = InputState.None;
+                TimerMove._timerEnum = TimerEnum.MoveTime;
+            }
+            else
                 break;
 
             //問題
-            await UniTask.WaitUntil(() => _comfirmationC.ReturnCount() < 0, cancellationToken: token);
+            await UniTask.WaitUntil(() => _comfirmationC.CurrentChar == '\0', cancellationToken: token);
             EventBus.Publish(new AllConnectEvent());
             await _ingameDirection.CorrectAnim(token);
-
-            //ループ
-            _initializeC.GoInitializeExecute();
-            InputChange._state = InputState.None;
-            TimerMove._timerEnum = TimerEnum.MoveTime;
         }
-
         //終了
         _ingameDirection.Finish();
     }

@@ -9,17 +9,14 @@ public class InitializeConnect : MonoBehaviour
         _initializeR = new InitializeRuntime(list);
     }
 
-    /// <summary>
-    /// 名前の入った箱が残りいくつか返す
-    /// </summary>
-    /// <returns></returns>
-    public int ReturnCount()
+    public int GoInitializeExecute()
     {
-        return _initializeR.Count;
-    }
-
-    public void GoInitializeExecute()
-    {
-        _initializeR.InitializeExecute();
+        if (_initializeR.TipeQueue > 0)
+        {
+            _initializeR.InitializeExecute();
+            return 1;
+        }
+        else
+            return -1;
     }
 }

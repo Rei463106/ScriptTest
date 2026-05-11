@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -19,11 +20,17 @@ public class ResultDirection : MonoBehaviour
     [SerializeField] private Text _correctSecond;
     [Header("CorrectRank")]
     [SerializeField] private Text _correctRank;
+    [Header("ToTitleText")]
+    [SerializeField] private Text _toGoTitleText;
+    [Header("Fade")]
+    [SerializeField] private Image _fade;
     [Header("SceneManager")]
     [SerializeField] private SceneMoveManager _sceneM;
 
     private void Start()
     {
+        _fade.DOFade(0f, 0f);
+        _toGoTitleText.DOFade(0f, 0f);
         var ct = this.GetCancellationTokenOnDestroy();
         Result(ct).Forget();
     }
@@ -40,15 +47,14 @@ public class ResultDirection : MonoBehaviour
         _correctNumber.text = StaticResult._finalCount.ToString();
         await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: token);
         _correctMinute.text = "00";
-        _correctSecond.text = Mathf.RoundToInt(StaticResult._finalTime).ToString();
+        var m = Mathf.RoundToInt(StaticResult._finalTime).ToString();
+        _correctSecond.text = m.Length == 1 ? "0" + m : m;
         await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: token);
         _correctRank.text = StaticResult._finalRank;
+        await _toGoTitleText.DOFade(1f, 0f).ToUniTask(cancellationToken: token);
 
-        while (true)
-        {
-            if (Input.anyKeyDown)
-                break;
-        }
+        await UniTask.WaitUntil(() => Input.anyKeyDown, cancellationToken: token);
+        await _fade.DOFade(1f, 2f).ToUniTask(cancellationToken: token);
         _sceneM.SceneMove("TipingTitle");
     }
 }
