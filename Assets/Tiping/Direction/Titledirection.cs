@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
-using System.Threading;
 using DG.Tweening;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,35 +13,23 @@ public class TitleDirection : MonoBehaviour
     [SerializeField] private Image _fadeImage;
     [Header("SE用")]
     [SerializeField] private AudioSource _seSource;
-    [Header("指パッチン")]
-    [SerializeField] private AudioClip _patchClip;
-    [Header("BGM")]
-    [SerializeField] private AudioClip _bgmClip;
     [Header("決定音")]
-    [SerializeField] private AudioClip _scenePatchClip;
+    [SerializeField] private AudioClip _dicisionClip;
     [Header("SceneManager")]
     [SerializeField] private SceneMoveManager _sceneM;
-
-    private AudioSource _source;
-    private CancellationToken _token;
 
     private void Start()
     {
         _fadeImage.DOFade(0f, 0f);
-        _source = GetComponent<AudioSource>();
-        _token = this.GetCancellationTokenOnDestroy();
+        var token = this.GetCancellationTokenOnDestroy();
+        TitleAnim(token).Forget();
     }
 
-    private void Update()
+    private async UniTask TitleAnim(CancellationToken token)
     {
-        if (Input.anyKeyDown)
-            FinishAnim(_token).Forget();
-    }
-
-    private async UniTask FinishAnim(CancellationToken token)
-    {
+        await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Z), cancellationToken: token);
+        _seSource.PlayOneShot(_dicisionClip);
         await _fadeImage.DOFade(1f, 2f).ToUniTask(cancellationToken: token);
         _sceneM.SceneMove("TipingsSelect");
     }
-
 }

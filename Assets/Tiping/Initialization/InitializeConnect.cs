@@ -9,14 +9,14 @@ public class InitializeConnect : MonoBehaviour
         _initializeR = new InitializeRuntime(list);
     }
 
-    public int GoInitializeExecute()
+    public bool GoInitializeExecute()
     {
         if (_initializeR.TipeQueue > 0)
         {
             _initializeR.InitializeExecute();
-            return 1;
+            return true;
         }
         else
-            return -1;
+            return false;
     }
 }

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             var c = _initializeC.GoInitializeExecute();//問題が残ってるか調べる
-            if (c > 0)
+            if (c)
             {
                 InputChange._state = InputState.None;
                 TimerMove._timerEnum = TimerEnum.MoveTime;
