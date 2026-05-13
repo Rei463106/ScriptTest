@@ -34,11 +34,11 @@ public class InputConnect : MonoBehaviour
         {
             await UniTask.WaitUntil(() => Input.anyKeyDown, cancellationToken: token);
             string s = Input.inputString;
-            if (InputChange._state == InputState.None)
+
+            if (InputChange._state == InputState.None && !string.IsNullOrEmpty(s))
             {
                 _seSource.PlayOneShot(_seClip);
-                var k = s[0];
-                EventBus.Publish(new ConfirmationEvent(k));//確認
+                EventBus.Publish(new ConfirmationEvent(s[0]));//確認
             }
             else
                 continue;

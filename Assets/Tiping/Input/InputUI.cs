@@ -44,7 +44,7 @@ public class InputUI : MonoBehaviour
         if (_correspondNumber.TryGetValue(_roma, out var w))
         {
             _kanaCount += w;//正解したところまで黄色文字にする
-            string colored = $"<color=yellow>{_kana.Substring(0, _kanaCount)}</color>" + _kana.Substring(_kanaCount);
+            string colored = $"<color=orange>{_kana.Substring(0, _kanaCount)}</color>" + _kana.Substring(_kanaCount);
             _kanaText.text = colored;
             _roma = "";
         }//正解したら合ってるところまで文字色を変える

@@ -546,7 +546,7 @@ MonoBehaviour:
   _fade: {fileID: 1182971372}
   _seSource: {fileID: 1786825934}
   _resultClip: {fileID: 8300000, guid: 36420b06725724348812ef3c12092fe3, type: 3}
-  _result2Clip: {fileID: 8300000, guid: 36420b06725724348812ef3c12092fe3, type: 3}
+  _result2Clip: {fileID: 8300000, guid: 37cbf74f81b1de14ca8330eb3c2a6a0d, type: 3}
   _dicisionClip: {fileID: 8300000, guid: 6add56c14c836c74ebaf68758cd3f8ea, type: 3}
   _sceneM: {fileID: 363710214}
 --- !u!4 &363710213

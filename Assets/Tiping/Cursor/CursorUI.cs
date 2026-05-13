@@ -34,14 +34,17 @@ public class CursorUI : MonoBehaviour
 
     private async UniTask BlinkCursor(CancellationToken token)
     {
-        while (i == 0)
+        while (i == 0 && !token.IsCancellationRequested)
         {
+            if (_cursor == null) return;
+
             _cursor.enabled = true;
             await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: token);
+
+            if (_cursor == null) return;
+
             _cursor.enabled = false;
             await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: token);
-
-            await UniTask.Yield();
         }
     }
 

@@ -359,3 +359,5 @@ MonoBehaviour:
     _alphabetNumber: 3
   - _alphabet: ppyo
     _alphabetNumber: 3
+  - _alphabet: '-'
+    _alphabetNumber: 1
