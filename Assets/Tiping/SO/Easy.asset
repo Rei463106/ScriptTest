@@ -21,3 +21,5 @@ MonoBehaviour:
     _kanaName: "\u30D0\u30EA\u30A6\u30E0"
   - _name: rakkyou
     _kanaName: "\u3089\u3063\u304D\u3087\u3046"
+  - _name: hinamaturi
+    _kanaName: "\u3072\u306A\u307E\u3064\u308A"

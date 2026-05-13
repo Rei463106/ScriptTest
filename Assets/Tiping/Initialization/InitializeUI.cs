@@ -29,8 +29,8 @@ public class InitializeUI : MonoBehaviour
         _kanaText.text = e._tipeName.KanaName;
         _answerRomaText.text = e._tipeName.Name;
         _romaText.text = "";//ローマ字のは空にする
-        _kanaText.color = Color.white;
-        _romaText.color = Color.white;
-        _answerRomaText.color = Color.white;
+        _kanaText.color = Color.black;
+        _romaText.color = Color.black;
+        _answerRomaText.color = Color.black;
     }
 }

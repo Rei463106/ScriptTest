@@ -27,6 +27,10 @@ public class ResultDirection : MonoBehaviour
     [SerializeField] private Image _fade;
     [Header("SESourse")]
     [SerializeField] private AudioSource _seSource;
+    [Header("結果音1")]
+    [SerializeField] private AudioClip _resultClip;
+    [Header("結果音2")]
+    [SerializeField] private AudioClip _result2Clip;
     [Header("決定音")]
     [SerializeField] private AudioClip _dicisionClip;
     [Header("SceneManager")]
@@ -42,8 +46,8 @@ public class ResultDirection : MonoBehaviour
     private async UniTask Result(CancellationToken token)
     {
         _animator?.SetTrigger("Result");
-        await _fade.DOFade(0f, 2f).ToUniTask(cancellationToken: token);      
-        await UniTask.Delay(TimeSpan.FromSeconds(_clip.length + 1.5f), cancellationToken: token);
+        await _fade.DOFade(0f, 2f).ToUniTask(cancellationToken: token);
+        await UniTask.Delay(TimeSpan.FromSeconds(_clip.length + 1.5f), cancellationToken: token);//フェード
         foreach (var item in _menuText)
         {
             var i = item.color;
@@ -51,11 +55,14 @@ public class ResultDirection : MonoBehaviour
             item.color = i;
         }
         _correctNumber.text = StaticResult._finalCount.ToString();
+        _seSource.PlayOneShot(_resultClip);
         await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: token);
+        _seSource.PlayOneShot(_resultClip);
         _correctMinute.text = "00";
         var m = Mathf.RoundToInt(StaticResult._finalTime).ToString();
         _correctSecond.text = m.Length == 1 ? "0" + m : m;
         await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: token);
+        _seSource.PlayOneShot(_result2Clip);
         _correctRank.text = StaticResult._finalRank;
         await _toGoTitleText.DOFade(1f, 0f).ToUniTask(cancellationToken: token);
 
